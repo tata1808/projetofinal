@@ -53,3 +53,28 @@ document.addEventListener('DOMContentLoaded', () => {
         priceElement.textContent = `R$ ${discountPrice.toFixed(2).replace('.', ',')}`;
     });
 });
+
+// Adicione este trecho de código JavaScript para controlar a reprodução das músicas
+document.addEventListener('DOMContentLoaded', () => {
+    const audioPlayer = document.getElementById('audio-player');
+
+    // Função para reproduzir uma música
+    const playMusic = (trackUrl) => {
+        audioPlayer.src = trackUrl;
+        audioPlayer.play();
+    };
+
+    // Função para pausar a reprodução da música
+    const pauseMusic = () => {
+        audioPlayer.pause();
+    };
+
+    // Evento para adicionar música ao clicar em um botão
+    document.querySelectorAll('.play-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const trackUrl = button.getAttribute('data-track-url');
+            playMusic(trackUrl);
+        });
+    });
+});
+

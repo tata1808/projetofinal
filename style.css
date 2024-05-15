@@ -239,3 +239,16 @@ body {
 #checkout:hover {
     background-color: #218838;
 }
+
+
+.music-player {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#audio-player {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+

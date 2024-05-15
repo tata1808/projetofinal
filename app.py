@@ -11,13 +11,13 @@ SCOPE = 'user-read-playback-state user-modify-playback-state streaming'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize'
 
-# Página inicial para autenticação
+# Página inicial para iniciar o fluxo de autorização do Spotify
 @app.route('/')
 def home():
     auth_url = f"{SPOTIFY_AUTH_URL}?response_type=code&client_id={CLIENT_ID}&scope={SCOPE}&redirect_uri={REDIRECT_URI}"
     return redirect(auth_url)
 
-# Callback para pegar o token de acesso
+# Callback para receber o código de autorização do Spotify e obter o token de acesso
 @app.route('/callback')
 def callback():
     code = request.args.get('code')
@@ -32,21 +32,22 @@ def callback():
     access_token = response_data.get('access_token')
     return jsonify({'access_token': access_token})
 
-# Endpoint para tocar música
+# Rota para reproduzir uma música no Spotify
 @app.route('/play', methods=['POST'])
 def play():
     data = request.get_json()
-    track_id = data.get('track_id')
-    device_id = data.get('device_id')
+    track_uri = data.get('track_uri')
     access_token = data.get('access_token')
 
-    play_url = f"https://api.spotify.com/v1/me/player/play?device_id={device_id}"
-    response = requests.put(play_url, headers={
+    headers = {
         'Authorization': f'Bearer {access_token}',
         'Content-Type': 'application/json'
-    }, json={
-        'uris': [f'spotify:track:{track_id}']
-    })
+    }
+    payload = {
+        'uris': [track_uri]
+    }
+
+    response = requests.put(SPOTIFY_PLAY_URL, headers=headers, json=payload)
 
     if response.status_code == 204:
         return jsonify({'status': 'Playing track'}), 200
@@ -54,4 +55,4 @@ def play():
         return jsonify({'error': response.json()}), response.status_code
 
 if __name__ == '__main__':
-    app.run(port=5000, host='localhost', debug=True)
+    app.run(port=5000, debug=True)
