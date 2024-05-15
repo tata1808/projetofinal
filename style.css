@@ -242,13 +242,31 @@ body {
 
 
 .music-player {
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
 }
 
 #audio-player {
-    width: 80%;
+    width: 30%;
     margin: 0 auto;
     display: block;
 }
 
+iframe {
+    border-radius: 12px;
+    width: 100%;
+    height: 200px; /* Altere conforme necessário */
+}
+
+/* Diminuir a caixa de preços e alinhar as caixas de produtos */
+.product-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.product {
+    flex-basis: calc(30% - 20px); /* Defina o tamanho da caixa de produto */
+    /* Outros estilos do produto */
+}
