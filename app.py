@@ -17,6 +17,14 @@ def home():
     auth_url = f"{SPOTIFY_AUTH_URL}?response_type=code&client_id={CLIENT_ID}&scope={SCOPE}&redirect_uri={REDIRECT_URI}"
     return redirect(auth_url)
 
+@app.route('/')
+def index():
+    iframe_code = '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0l29CA64hmFAnD4e7gE2HM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'
+    return render_template('index.html', iframe_code=iframe_code)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 # Callback para receber o código de autorização do Spotify e obter o token de acesso
 @app.route('/callback')
 def callback():
@@ -56,3 +64,5 @@ def play():
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
+
+
