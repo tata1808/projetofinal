@@ -1,29 +1,22 @@
-from flask import Flask, jsonify, request, redirect
+from flask import Flask, jsonify, request, redirect, render_template
 import requests
 
 app = Flask(__name__)
 
 # Credenciais da aplicação Spotify
-CLIENT_ID = '16c56cb32bca4bb6bd93987560131fa5'
-CLIENT_SECRET = 'd9a4e284150c44d19b0d7e486626c457'
+CLIENT_ID = 'YOUR_CLIENT_ID'
+CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
 REDIRECT_URI = 'http://localhost:5000/callback'
 SCOPE = 'user-read-playback-state user-modify-playback-state streaming'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize'
+SPOTIFY_PLAY_URL = 'https://api.spotify.com/v1/me/player/play'
 
 # Página inicial para iniciar o fluxo de autorização do Spotify
 @app.route('/')
 def home():
     auth_url = f"{SPOTIFY_AUTH_URL}?response_type=code&client_id={CLIENT_ID}&scope={SCOPE}&redirect_uri={REDIRECT_URI}"
     return redirect(auth_url)
-
-@app.route('/')
-def index():
-    iframe_code = '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0l29CA64hmFAnD4e7gE2HM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'
-    return render_template('index.html', iframe_code=iframe_code)
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 # Callback para receber o código de autorização do Spotify e obter o token de acesso
 @app.route('/callback')
@@ -62,7 +55,10 @@ def play():
     else:
         return jsonify({'error': response.json()}), response.status_code
 
+# Renderiza o template HTML
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
-
-
