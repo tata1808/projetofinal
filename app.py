@@ -5,10 +5,10 @@ import requests
 app = Flask(__name__)
 
 # URL de redirecionamento configurada no painel de desenvolvedor do Spotify
-REDIRECT_URI = 'https://github.com/tata1808/projetofinal.git.io.git'
+REDIRECT_URI = 'http://localhost:8080/'
 # Credenciais da aplicação Spotify
-CLIENT_ID = '16c56cb32bca4bb6bd93987560131fa5'
-CLIENT_SECRET = 'd9a4e284150c44d19b0d7e486626c457'
+CLIENT_ID = 'bd195017798c426fb24243ae4fe8dc7c'
+CLIENT_SECRET = '4c257c9e87cc4c6594fabe2c586a9d88'
 SCOPE = 'user-read-playback-state user-modify-playback-state streaming'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize'
@@ -63,5 +63,4 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(port=8080, debug=True)
