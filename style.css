@@ -39,21 +39,6 @@ body {
     display: none;
 }
 
-.home {
-    display: flex;
-    justify-content: space-between;
-    padding: 14px;
-}
-
-.home-text {
-    max-width: 50%;
-    margin-bottom: 20px; /* Adiciona margem inferior */
-}
-
-.home-img {
-    margin-top: 20px; /* Adiciona margem superior */
-}
-
 .text-h1 {
     font-size: 2.5em;
 }
@@ -70,7 +55,6 @@ body {
     line-height: 1.5; /* Define o espaçamento entre as linhas */
 }
 
-
 .home-btn {
     display: inline-block;
     padding: 10px 20px;
@@ -83,17 +67,12 @@ body {
 .product-display {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.product img {
-    max-width: 30%;
-    height: auto;
+    justify-content: space-between; /* Adicione esta linha */
+    padding: 10px;
 }
 
 .product {
+    flex-basis: calc(50% - 10px); /* Adicione esta linha */
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -108,20 +87,6 @@ body {
     margin-bottom: 10px;
     color: #000;
 }
-
-.product-display {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Adicione esta linha */
-    gap: 10px;
-    padding: 10px;
-}
-
-.product {
-    flex-basis: calc(50% - 10px); /* Adicione esta linha */
-    /* Outros estilos do produto */
-}
-
 
 .price {
     font-size: 1.2em;
@@ -147,12 +112,6 @@ body {
 .add-to-cart:active {
     background-color: #940303;
 }
-
-/* Estilos para quando o mouse estiver sobre o botão */
-.add-to-cart:hover {
-    background-color: #940303;
-}
-    
 
 .contact {
     background-color: #111;
@@ -258,42 +217,11 @@ body {
     background-color: #218838;
 }
 
-
-music-player {
-    margin-top: 10px;
-    text-align: center;
-}
-
-#audio-player {
-    width: 30%;
-    margin: 0 auto;
-    display: block;
-}
-
-iframe {
-    border-radius: 12px;
-    width: 100%;
-    height: 200px; /* Altere conforme necessário */
-}
-
-/* Diminuir a caixa de preços e alinhar as caixas de produtos */
-.product-display {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-.product {
-    flex-basis: calc(30% - 20px); /* Defina o tamanho da caixa de produto */
-    /* Outros estilos do produto */
-}
 .music-player {
     margin-top: 20px; /* Adiciona margem no topo */
     margin-bottom: 20px; /* Adiciona margem na parte inferior */
     text-align: center;
 }
-
 
 #audio-player {
     width: 30%;

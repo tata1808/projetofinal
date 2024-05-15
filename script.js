@@ -23,58 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
         totalPriceElement.textContent = `Total: R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
     };
 
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', () => {
-            const name = button.getAttribute('data-name');
-            const price = parseFloat(button.getAttribute('data-price'));
+    const addToCart = (name, price) => {
+        cart.push({ name, price });
+        updateCart();
+    };
 
-            cart.push({ name, price });
-            updateCart();
+    document.querySelectorAll('.add-to-cart').forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const productName = button.dataset.name;
+            const productPrice = parseFloat(button.dataset.price);
+            addToCart(productName, productPrice);
         });
     });
 
-    cartItemsElement.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-from-cart')) {
-            const index = e.target.getAttribute('data-index');
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('remove-from-cart')) {
+            const index = parseInt(event.target.dataset.index);
             cart.splice(index, 1);
             updateCart();
         }
     });
-
-    // Aplicar descontos nos produtos
-    const products = document.querySelectorAll('.product');
-
-    products.forEach(product => {
-        const priceElement = product.querySelector('.price');
-        const originalPrice = parseFloat(priceElement.textContent.replace('R$ ', '').replace(',', '.'));
-
-        // Exemplo: Aplicar um desconto de 10%
-        const discountPrice = originalPrice * 0.9;
-        priceElement.textContent = `R$ ${discountPrice.toFixed(2).replace('.', ',')}`;
-    });
 });
-
-// Adicione este trecho de código JavaScript para controlar a reprodução das músicas
-document.addEventListener('DOMContentLoaded', () => {
-    const audioPlayer = document.getElementById('audio-player');
-
-    // Função para reproduzir uma música
-    const playMusic = (trackUrl) => {
-        audioPlayer.src = trackUrl;
-        audioPlayer.play();
-    };
-
-    // Função para pausar a reprodução da música
-    const pauseMusic = () => {
-        audioPlayer.pause();
-    };
-
-    // Evento para adicionar música ao clicar em um botão
-    document.querySelectorAll('.play-button').forEach(button => {
-        button.addEventListener('click', () => {
-            const trackUrl = button.getAttribute('data-track-url');
-            playMusic(trackUrl);
-        });
-    });
-});
-

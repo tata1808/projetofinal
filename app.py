@@ -1,12 +1,14 @@
 from flask import Flask, jsonify, request, redirect, render_template
+import os
 import requests
 
 app = Flask(__name__)
 
+# URL de redirecionamento configurada no painel de desenvolvedor do Spotify
+REDIRECT_URI = 'https://github.com/tata1808/projetofinal.git.io.git'
 # Credenciais da aplicação Spotify
-CLIENT_ID = 'YOUR_CLIENT_ID'
-CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
-REDIRECT_URI = 'http://localhost:5000/callback'
+CLIENT_ID = '16c56cb32bca4bb6bd93987560131fa5'
+CLIENT_SECRET = 'd9a4e284150c44d19b0d7e486626c457'
 SCOPE = 'user-read-playback-state user-modify-playback-state streaming'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize'
@@ -62,3 +64,4 @@ def index():
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)

@@ -29,16 +29,17 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-<div class="music-player">
-    <audio id="audio-player" controls>
-        <source src="" type="audio/mp3">
-
-    </audio>
-</div>
-
         </nav>
         <nav class="icons"></nav>
     </header>
+
+    <!-- Reprodutor de música entre o início da página e as caixas de produtos -->
+    <div class="music-player">
+        <audio id="audio-player" controls>
+            <source src="" type="audio/mp3">
+        </audio>
+    </div>
+
     <main>
         <section class="home" id="inicio">
             <div class="home-text">
@@ -48,15 +49,10 @@
                 <a href="#produtos" class="home-btn">Mais Produtos</a>
             </div>
             <div class="home-img">
-                <img src="assets/imagens/pitty.png.png" alt="pitty">
+                <img src="assets/imagens/pitty.png" alt="pitty" style="width: 50%;">
             </div>
         </section>
-        <div class="music-player">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0l29CA64hmFAnD4e7gE2HM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
-            <audio id="audio-player" controls>
-                <source src="" type="audio/mp3">
-            </audio>
-        </div>
+        
         <!-- Seção de exibição de preços de produtos -->
         <section class="product-display" id="produtos">
             <div class="product" id="camisetas">
@@ -119,13 +115,14 @@
             </div>
         </section>
 
-        <!-- Seção do Carrinho -->
+       
         <section class="cart" id="carrinho">
             <h2>Carrinho</h2>
             <div id="cart-items"></div>
             <p id="total-price">Total: R$ 0,00</p>
             <button id="checkout">Finalizar Compra</button>
         </section>
+            
 
 
         
